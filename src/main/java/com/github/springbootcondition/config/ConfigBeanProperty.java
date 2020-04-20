@@ -26,7 +26,6 @@ import org.springframework.context.annotation.Configuration;
 @Conditional(ConditionClass.class)
 public class ConfigBeanProperty {
 
-
     @Bean("Person5")
     @ConditionalOnMissingBean
     public Person getPerson3() {
@@ -68,6 +67,5 @@ public class ConfigBeanProperty {
     public Person getPerson9() {
         return new Person("P9");
     }
-
 
 }

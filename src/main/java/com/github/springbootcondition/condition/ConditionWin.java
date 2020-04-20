@@ -1,6 +1,7 @@
 package com.github.springbootcondition.condition;
 
-import org.springframework.context.annotation.Condition;
+import org.springframework.boot.autoconfigure.condition.ConditionOutcome;
+import org.springframework.boot.autoconfigure.condition.SpringBootCondition;
 import org.springframework.context.annotation.ConditionContext;
 import org.springframework.core.type.AnnotatedTypeMetadata;
 
@@ -15,10 +16,11 @@ import org.springframework.core.type.AnnotatedTypeMetadata;
  * @since 0.0.1
  */
 
-public class ConditionWin implements Condition {
+public class ConditionWin extends SpringBootCondition {
 
     @Override
-    public boolean matches(ConditionContext conditionContext, AnnotatedTypeMetadata annotatedTypeMetadata) {
-        return true;
+    public ConditionOutcome getMatchOutcome(ConditionContext context, AnnotatedTypeMetadata metadata) {
+        return new ConditionOutcome(true, "success");
     }
+
 }

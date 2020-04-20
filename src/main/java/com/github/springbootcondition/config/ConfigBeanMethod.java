@@ -21,7 +21,7 @@ import org.springframework.context.annotation.Configuration;
 public class ConfigBeanMethod {
 
     /**
-     * 只有当 {@link ConditionMac#matches}返回为 true 时,才生成这个对象
+     * 只有当 {@link ConditionMac#getMatchOutcome}返回为 true 时,才生成这个对象
      *
      * @return Person
      */
@@ -32,7 +32,7 @@ public class ConfigBeanMethod {
     }
 
     /**
-     * 只有当 {@link ConditionWin#matches}返回为 true 时,才生成这个对象
+     * 只有当 {@link ConditionWin#getMatchOutcome}返回为 true 时,才生成这个对象
      *
      * @return Person
      */

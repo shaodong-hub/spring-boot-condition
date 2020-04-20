@@ -1,8 +1,10 @@
 package com.github.springbootcondition.condition;
 
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
-import org.springframework.context.annotation.Condition;
+import org.springframework.boot.autoconfigure.condition.ConditionOutcome;
+import org.springframework.boot.autoconfigure.condition.SpringBootCondition;
 import org.springframework.context.annotation.ConditionContext;
 import org.springframework.core.env.Environment;
 import org.springframework.core.type.AnnotatedTypeMetadata;
@@ -22,7 +24,7 @@ import org.springframework.core.type.AnnotatedTypeMetadata;
  * @since 0.0.1
  */
 
-public class ConditionDemonstration implements Condition {
+public class ConditionDemonstration extends SpringBootCondition {
 
     /**
      * 确定条件是否匹配。
@@ -33,7 +35,7 @@ public class ConditionDemonstration implements Condition {
      * @return 如果条件匹配且组件可以注册，或false否决带注释的组件的注册
      */
     @Override
-    public boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata) {
+    public ConditionOutcome getMatchOutcome(@NotNull ConditionContext context, AnnotatedTypeMetadata metadata) {
         //1.能获取到 IOC 使用的 BeanFactory
         ConfigurableListableBeanFactory beanFactory = context.getBeanFactory();
         //2.获取类加载器
@@ -45,6 +47,6 @@ public class ConditionDemonstration implements Condition {
         //----------------------------------------
         String envName = environment.getProperty("os.name");
         assert envName != null;
-        return envName.contains("Mac");
+        return new ConditionOutcome(envName.contains("Mac"), "success");
     }
 }
