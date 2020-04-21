@@ -9,6 +9,9 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnNotWebApplication;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.ConfigurableApplicationContext;
+
+import java.util.Set;
 
 /**
  * @author shao
@@ -24,7 +27,15 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 public class SpringBootConditionApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringBootConditionApplication.class, args);
+        ConfigurableApplicationContext context = SpringApplication.run(SpringBootConditionApplication.class, args);
+        Set<String> set = context.getBean(Set.class);
+        for (Object o : set) {
+            System.out.println(o);
+        }
+
+
+        context.close();
+
     }
 
 }
